@@ -27,3 +27,17 @@ jobs:
 
       - name: Build
         run: ./gradlew build
+
+     - name: Merge main into dev
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git fetch origin main
+          git merge origin/main --no-edit
+
+      - name: Push to main
+        if: success()
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git push origin HEAD:main
