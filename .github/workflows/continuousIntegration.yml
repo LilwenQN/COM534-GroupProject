@@ -8,12 +8,20 @@ on:
     branches:
       - dev
 
+  merge_group:
+    branches:
+      - dev
+
+permissions:
+  contents: read
+
 jobs:
   build-and-test:
+    name: build-and-test
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Check out repository
         uses: actions/checkout@v4
 
       - name: Set up JDK
@@ -25,8 +33,5 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Build
+      - name: Build and run unit tests
         run: ./gradlew build
-
-      - name: Run tests
-        run: ./gradlew test
