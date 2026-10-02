@@ -8,10 +8,6 @@ on:
     branches:
       - dev
 
-  merge_group:
-    branches:
-      - dev
-
 permissions:
   contents: read
 
